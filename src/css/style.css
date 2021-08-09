@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(182, 182, 178);
+}
+
+div#timer-1 {
+  list-style: none;
+  margin: 50px 0;
+  padding: 0;
+  display: block;
+  text-align: center;
+}
+
+div#timer-1 div {
+  display: inline-block;
+}
+
+div#timer-1 div span {
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 80px;
+}
+
+div#timer-1 div.seperator {
+  font-size: 80px;
+  line-height: 70px;
+  vertical-align: top;
+}
+
+div#timer-1 div p {
+  color: #5b5e63;
+  font-size: 25px;
+}
+
+h1 {
+  text-align: center;
+}
