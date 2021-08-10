@@ -18,8 +18,6 @@ class CountdownTimer {
       secs: this.selectorTimer.querySelector('[data-value="secs"]'),
     };
 
-    console.log(this.refs);
-
     this.start();
   }
 
