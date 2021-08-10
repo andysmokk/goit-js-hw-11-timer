@@ -1,14 +1,24 @@
-const refs = {
-  days: document.querySelector('[data-value="days"]'),
-  hours: document.querySelector('[data-value="hours"]'),
-  mins: document.querySelector('[data-value="mins"]'),
-  secs: document.querySelector('[data-value="secs"]'),
-};
+// const refs = {
+//   days: document.querySelector('[data-value="days"]'),
+//   hours: document.querySelector('[data-value="hours"]'),
+//   mins: document.querySelector('[data-value="mins"]'),
+//   secs: document.querySelector('[data-value="secs"]'),
+// };
 
 class CountdownTimer {
-  constructor({ targetDate, onTick }) {
+  constructor({ targetDate, selectorTimer }) {
+    this.selectorTimer = document.querySelector(selectorTimer);
+    // console.log(this.selectorTimer);
     this.targetDate = targetDate;
-    this.onTick = onTick;
+    // this.onTick = onTick;
+    this.refs = {
+      days: this.selectorTimer.querySelector('[data-value="days"]'),
+      hours: this.selectorTimer.querySelector('[data-value="hours"]'),
+      mins: this.selectorTimer.querySelector('[data-value="mins"]'),
+      secs: this.selectorTimer.querySelector('[data-value="secs"]'),
+    };
+
+    console.log(this.refs);
 
     this.start();
   }
@@ -21,7 +31,8 @@ class CountdownTimer {
       const deltaTime = this.targetDate - currentTime;
       const time = this.timeConverter(deltaTime);
 
-      this.onTick(time);
+      // this.onTick(time);
+      this.updateClock(time);
     }, 1000);
   }
 
@@ -38,16 +49,24 @@ class CountdownTimer {
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
     return { days, hours, mins, secs };
   };
+
+  updateClock({ days, hours, mins, secs }) {
+    this.refs.days.textContent = days;
+    this.refs.hours.textContent = hours;
+    this.refs.mins.textContent = mins;
+    this.refs.secs.textContent = secs;
+  }
 }
 
 const timer = new CountdownTimer({
+  selectorTimer: '#timer-1',
   targetDate: new Date('Aug 31, 2021'),
-  onTick: updateClock,
+  // onTick: updateClock,
 });
 
-function updateClock({ days, hours, mins, secs }) {
-  refs.days.textContent = `${days}`;
-  refs.hours.textContent = `${hours}`;
-  refs.mins.textContent = `${mins}`;
-  refs.secs.textContent = `${secs}`;
-}
+// function updateClock({ days, hours, mins, secs }) {
+//   refs.days.textContent = days;
+//   refs.hours.textContent = hours;
+//   refs.mins.textContent = mins;
+//   refs.secs.textContent = secs;
+// }
